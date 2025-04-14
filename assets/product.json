@@ -1,0 +1,266 @@
+[
+  {
+    "id": "p1",
+    "categoryId": "fruits",
+    "name": "Яблоко",
+    "image": "assets/images/apple.png",
+    "description": "Свежее сочное яблоко с хрустящей текстурой и сладким вкусом. Идеально для перекуса или приготовления пирогов.",
+    "price": 1.5
+  },
+  {
+    "id": "p2",
+    "categoryId": "fruits",
+    "name": "Банан",
+    "image": "assets/images/banana.png",
+    "description": "Спелые бананы с насыщенным ароматом и мягкой текстурой. Источник энергии и калия.",
+    "price": 2
+  },
+  {
+    "id": "p3",
+    "categoryId": "fruits",
+    "name": "Апельсин",
+    "image": "assets/images/orange.png",
+    "description": "Сладкий и сочный апельсин, богатый витамином C. Отлично подходит для сока или свежего употребления.",
+    "price": 1.8
+  },
+  {
+    "id": "p4",
+    "categoryId": "fruits",
+    "name": "Груша",
+    "image": "assets/images/pear.png",
+    "description": "Спелая груша с нежной мякотью и сладким вкусом. Легко усваивается и идеально сочетается с сыром.",
+    "price": 2.1
+  },
+  {
+    "id": "p5",
+    "categoryId": "fruits",
+    "name": "Киви",
+    "image": "assets/images/kiwi.png",
+    "description": "Киви из Новой Зеландии с ярким вкусом и множеством витаминов. Отличное дополнение к фруктовому салату.",
+    "price": 2.3
+  },
+  {
+    "id": "p6",
+    "categoryId": "fruits",
+    "name": "Манго",
+    "image": "assets/images/mango.png",
+    "description": "Сочный и ароматный манго. Идеален для смузи, десертов или просто как экзотический перекус.",
+    "price": 3
+  },
+  {
+    "id": "p7",
+    "categoryId": "vegetables",
+    "name": "Морковь",
+    "image": "assets/images/carrot.png",
+    "description": "Хрустящая морковь, богата бета-каротином. Подходит для салатов, супов и свежих соков.",
+    "price": 0.8
+  },
+  {
+    "id": "p8",
+    "categoryId": "vegetables",
+    "name": "Картофель",
+    "image": "assets/images/potato.png",
+    "description": "Свежий молодой картофель. Универсален в приготовлении: жареный, печёный, варёный.",
+    "price": 1
+  },
+  {
+    "id": "p9",
+    "categoryId": "vegetables",
+    "name": "Огурец",
+    "image": "assets/images/cucumber.png",
+    "description": "Сочные и освежающие огурцы. Идеальны для салатов и летних закусок.",
+    "price": 1.2
+  },
+  {
+    "id": "p10",
+    "categoryId": "vegetables",
+    "name": "Помидор",
+    "image": "assets/images/tomato.png",
+    "description": "Спелые томаты с насыщенным вкусом. Отлично подходят для соусов, салатов и сэндвичей.",
+    "price": 1.4
+  },
+  {
+    "id": "p11",
+    "categoryId": "vegetables",
+    "name": "Лук",
+    "image": "assets/images/onion.png",
+    "description": "Классический репчатый лук. Необходимый ингредиент в кулинарии с богатым ароматом.",
+    "price": 0.9
+  },
+  {
+    "id": "p12",
+    "categoryId": "vegetables",
+    "name": "Чеснок",
+    "image": "assets/images/garlic.png",
+    "description": "Ароматный свежий чеснок. Придаёт вкус и пикантность любому блюду.",
+    "price": 1.3
+  },
+  {
+    "id": "p13",
+    "categoryId": "diary",
+    "name": "Молоко",
+    "image": "assets/images/milk.png",
+    "description": "Натуральное молоко с насыщенным вкусом. Подходит для питья, каш и выпечки.",
+    "price": 1.6
+  },
+  {
+    "id": "p14",
+    "categoryId": "diary",
+    "name": "Сыр",
+    "image": "assets/images/cheese.png",
+    "description": "Твёрдый сыр с насыщенным вкусом и ароматом. Прекрасен в бутербродах и пастах.",
+    "price": 3.5
+  },
+  {
+    "id": "p15",
+    "categoryId": "diary",
+    "name": "Йогурт",
+    "image": "assets/images/yogurt.png",
+    "description": "Нежный натуральный йогурт без добавок. Отличный источник кальция и пробиотиков.",
+    "price": 1.9
+  },
+  {
+    "id": "p16",
+    "categoryId": "diary",
+    "name": "Творог",
+    "image": "assets/images/cottage_cheese.png",
+    "description": "Домашний творог с мягкой текстурой. Подходит как для десертов, так и для диетического питания.",
+    "price": 2.2
+  },
+  {
+    "id": "p17",
+    "categoryId": "diary",
+    "name": "Сметана",
+    "image": "assets/images/sour_cream.png",
+    "description": "Сметана 20% жирности, густая и насыщенная. Подходит для супов, соусов и выпечки.",
+    "price": 1.7
+  },
+  {
+    "id": "p18",
+    "categoryId": "diary",
+    "name": "Кефир",
+    "image": "assets/images/kefir.png",
+    "description": "Лёгкий и полезный кефир. Идеален для поддержания пищеварения и как напиток на каждый день.",
+    "price": 1.5
+  },
+  {
+    "id": "p19",
+    "categoryId": "meat",
+    "name": "Куриная грудка",
+    "image": "assets/images/chicken_breast.png",
+    "description": "Постная и сочная куриная грудка без кожи. Отличный выбор для здорового питания.",
+    "price": 4.5
+  },
+  {
+    "id": "p20",
+    "categoryId": "meat",
+    "name": "Говядина",
+    "image": "assets/images/beef.png",
+    "description": "Отборная мраморная говядина. Подходит для стейков и рагу.",
+    "price": 7.2
+  },
+  {
+    "id": "p21",
+    "categoryId": "meat",
+    "name": "Индейка",
+    "image": "assets/images/turkey.png",
+    "description": "Филе индейки — диетическое мясо с мягким вкусом. Подходит для запекания и тушения.",
+    "price": 6
+  },
+  {
+    "id": "p22",
+    "categoryId": "meat",
+    "name": "Куриные крылышки",
+    "image": "assets/images/chicken_wings.png",
+    "description": "Крылышки для жарки, запекания или барбекю. Сочные и ароматные.",
+    "price": 3.9
+  },
+  {
+    "id": "p23",
+    "categoryId": "meat",
+    "name": "Мясной фарш",
+    "image": "assets/images/minced_meat.png",
+    "description": "Свежий мясной фарш из говядины и свинины. Идеален для котлет, тефтелей и соусов.",
+    "price": 4.2
+  },
+  {
+    "id": "p24",
+    "categoryId": "bakery",
+    "name": "Батон",
+    "image": "assets/images/baton.png",
+    "description": "Классический белый батон с мягким мякишем. Отличный выбор к завтраку или супу.",
+    "price": 1.2
+  },
+  {
+    "id": "p25",
+    "categoryId": "bakery",
+    "name": "Хлеб ржаной",
+    "image": "assets/images/rye_bread.png",
+    "description": "Ароматный ржаной хлеб на закваске. Подходит к мясным и рыбным блюдам.",
+    "price": 1.4
+  },
+  {
+    "id": "p26",
+    "categoryId": "bakery",
+    "name": "Круассан",
+    "image": "assets/images/croissant.png",
+    "description": "Воздушный круассан с маслом. Идеален к утреннему кофе.",
+    "price": 1.8
+  },
+  {
+    "id": "p27",
+    "categoryId": "bakery",
+    "name": "Слойка с яблоком",
+    "image": "assets/images/apple_puff.png",
+    "description": "Слоёное тесто с ароматной яблочной начинкой. Сладкий перекус на каждый день.",
+    "price": 1.6
+  },
+  {
+    "id": "p28",
+    "categoryId": "bakery",
+    "name": "Булочка с корицей",
+    "image": "assets/images/cinnamon_roll.png",
+    "description": "Мягкая булочка, щедро посыпанная корицей и сахаром. Уютный вкус домашней выпечки.",
+    "price": 2
+  },
+  {
+    "id": "p29",
+    "categoryId": "bakery",
+    "name": "Багет",
+    "image": "assets/images/baguette.png",
+    "description": "Французский багет с хрустящей корочкой. Идеально подойдёт для сэндвичей или сырной тарелки.",
+    "price": 1.5
+  },
+  {
+    "id": "p30",
+    "categoryId": "drinks",
+    "name": "Вода без газа",
+    "image": "assets/images/water.png",
+    "description": "Чистая питьевая вода без газа. Освежающая и необходимая каждый день.",
+    "price": 0.9
+  },
+  {
+    "id": "p31",
+    "categoryId": "drinks",
+    "name": "Кола",
+    "image": "assets/images/cola.png",
+    "description": "Газированный напиток с классическим вкусом. Освежает и бодрит.",
+    "price": 1.4
+  },
+  {
+    "id": "p32",
+    "categoryId": "drinks",
+    "name": "Молочный коктейль",
+    "image": "assets/images/milkshake.png",
+    "description": "Сладкий молочный коктейль с ванильным вкусом. Любимое лакомство детей и взрослых.",
+    "price": 2.5
+  },
+  {
+    "id": "p33",
+    "categoryId": "drinks",
+    "name": "Энергетик",
+    "image": "assets/images/energy_drink.png",
+    "description": "Напиток с кофеином и таурином для повышения энергии и концентрации.",
+    "price": 2.7
+  }
+]

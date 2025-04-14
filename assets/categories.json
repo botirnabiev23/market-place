@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fruits",
+    "name": "Фрукты",
+    "image": "assets/images/fruits.png"
+  },
+  {
+    "id": "vegetables",
+    "name": "Овощи",
+    "image": "assets/images/vegetables.png"
+  },
+  {
+    "id": "diary",
+    "name": "Молочные продукты",
+    "image": "assets/images/diary.png"
+  },
+  {
+    "id": "meat",
+    "name": "Мясо и птица",
+    "image": "assets/images/meat.png"
+  },
+  {
+    "id": "bakery",
+    "name": "Выпечка",
+    "image": "assets/images/bakery.png"
+  },
+  {
+    "id": "drinks",
+    "name": "Напитки",
+    "image": "assets/images/drinks.png"
+  }
+]
