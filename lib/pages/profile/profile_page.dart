@@ -30,9 +30,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       if (currentUser != null) {
         final updatedAvatars = List<String>.from(currentUser.avatars)
           ..add(pickedFile.path);
-        ref.read(userProvider.notifier).updateUser(
-          currentUser.copyWith(avatars: updatedAvatars),
-        );
+        ref
+            .read(userProvider.notifier)
+            .updateUser(currentUser.copyWith(avatars: updatedAvatars));
       }
     }
   }
@@ -52,14 +52,16 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 if (!_isEditing) {
                   final currentUser = userAsync.value;
                   if (currentUser != null) {
-                    ref.read(userProvider.notifier).updateUser(
-                      User(
-                        name: _nameController.text.trim(),
-                        email: _emailController.text.trim(),
-                        phone: _phoneController.text.trim(),
-                        avatars: currentUser.avatars,
-                      ),
-                    );
+                    ref
+                        .read(userProvider.notifier)
+                        .updateUser(
+                          User(
+                            name: _nameController.text.trim(),
+                            email: _emailController.text.trim(),
+                            phone: _phoneController.text.trim(),
+                            avatars: currentUser.avatars,
+                          ),
+                        );
                   }
                 }
               },
@@ -112,7 +114,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                           child: const CircleAvatar(
                             radius: 16,
                             backgroundColor: Colors.blue,
-                            child: Icon(Icons.add, size: 18, color: Colors.white),
+                            child: Icon(
+                              Icons.add,
+                              size: 18,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
