@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:market_place/models/user_model.dart';
 import 'package:market_place/pages/profile/widgets/profile_image_widget.dart';
 import 'package:market_place/pages/profile/widgets/profile_text_field_widget.dart';
 import 'package:market_place/providers/user_provider.dart';
+import 'widgets/profile_avatar_image.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -19,6 +21,21 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   late final TextEditingController _nameController = TextEditingController();
   late final TextEditingController _emailController = TextEditingController();
   late final TextEditingController _phoneController = TextEditingController();
+
+  void _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      final currentUser = ref.read(userProvider).value;
+      if (currentUser != null) {
+        final updatedAvatars = List<String>.from(currentUser.avatars)
+          ..add(pickedFile.path);
+        ref.read(userProvider.notifier).updateUser(
+          currentUser.copyWith(avatars: updatedAvatars),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,16 +52,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 if (!_isEditing) {
                   final currentUser = userAsync.value;
                   if (currentUser != null) {
-                    ref
-                        .read(userProvider.notifier)
-                        .updateUser(
-                          User(
-                            name: _nameController.text.trim(),
-                            email: _emailController.text.trim(),
-                            phone: _phoneController.text.trim(),
-                            avatars: currentUser.avatars,
-                          ),
-                        );
+                    ref.read(userProvider.notifier).updateUser(
+                      User(
+                        name: _nameController.text.trim(),
+                        email: _emailController.text.trim(),
+                        phone: _phoneController.text.trim(),
+                        avatars: currentUser.avatars,
+                      ),
+                    );
                   }
                 }
               },
@@ -63,43 +78,45 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             padding: const EdgeInsets.all(16),
             children: [
               Center(
-                child: Hero(
-                  tag:
-                      avatars.isNotEmpty
-                          ? avatars[0]
-                          : 'https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3383.jpg',
-                  child: GestureDetector(
-                    onTap: () {
-                      if (avatars.isNotEmpty) {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                            opaque: false,
-                            barrierColor: Colors.black,
-                            pageBuilder:
-                                (_, __, ___) => ProfileImageWidget(
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Hero(
+                      tag: avatars[0],
+                      child: GestureDetector(
+                        onTap: () {
+                          if (avatars.isNotEmpty) {
+                            showDialog(
+                              useSafeArea: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return ProfileImageWidget(
                                   images: avatars,
                                   initialIndex: 0,
-                                ),
-                          ),
-                        );
-                      }
-                    },
-                    child: ClipOval(
-                      child: switch (avatars.isNotEmpty) {
-                        true => Image.network(
-                          avatars[0],
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
+                                );
+                              },
+                            );
+                          }
+                        },
+                        child: ClipOval(
+                          child: ProfileAvatarImage(path: avatars[0]),
                         ),
-                        false => Container(
-                          width: 150,
-                          height: 150,
-                          color: Colors.grey,
-                        ),
-                      },
+                      ),
                     ),
-                  ),
+                    if (_isEditing)
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: _pickImage,
+                          child: const CircleAvatar(
+                            radius: 16,
+                            backgroundColor: Colors.blue,
+                            child: Icon(Icons.add, size: 18, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
               const Gap(20),

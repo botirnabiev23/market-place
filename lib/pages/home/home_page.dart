@@ -51,8 +51,10 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 6, top: 8),
-                child: SvgPicture.asset(
-                  'assets/images/coupon_icon.svg',
+                child: Image.asset(
+                  'assets/images/category.png',
+                  width: 24,
+                  height: 24,
                   color:
                       _selectedIndex == BottomNavigationItem.categories.index
                           ? Colors.black

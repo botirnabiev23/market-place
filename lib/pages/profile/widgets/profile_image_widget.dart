@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
-import 'package:photo_view/photo_view_gallery.dart';
 
 class ProfileImageWidget extends StatefulWidget {
   final List<String> images;
@@ -33,34 +31,57 @@ class _ProfileImageWidgetState extends State<ProfileImageWidget> {
     }
   }
 
-  void _handleTapUp(TapUpDetails details) {
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onVerticalDragUpdate: _handleVerticalDrag,
-      onTapUp: _handleTapUp,
-      child: Scaffold(
-        body: PhotoViewGallery.builder(
-          pageController: _pageController,
-          itemCount: widget.images.length,
-          builder: (context, index) {
-            final url = widget.images[index];
-            return PhotoViewGalleryPageOptions(
-              imageProvider: NetworkImage(url),
-              heroAttributes: PhotoViewHeroAttributes(tag: url),
-              minScale: PhotoViewComputedScale.contained,
-              maxScale: PhotoViewComputedScale.covered * 2,
-            );
-          },
-          onPageChanged: (index) => setState(() {
-            _currentIndex = index;
-          }),
-          backgroundDecoration:  BoxDecoration(color: Colors.black),
-          scrollPhysics: const BouncingScrollPhysics(),
-          loadingBuilder: (context, _) => const Center(child: CircularProgressIndicator()),
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: GestureDetector(
+          onVerticalDragUpdate: _handleVerticalDrag,
+          behavior: HitTestBehavior.translucent,
+          child: Stack(
+            children: [
+              PageView.builder(
+                controller: _pageController,
+                itemCount: widget.images.length,
+                itemBuilder: (context, index) {
+                  final path = widget.images[index];
+                  return Center(
+                    child: AspectRatio(
+                      aspectRatio: 1.0,
+                      child: Image.asset(path, fit: BoxFit.cover),
+                    ),
+                  );
+                },
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                physics: const BouncingScrollPhysics(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    '${_currentIndex + 1}/${widget.images.length}',
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 16,
+                left: 0,
+                child: BackButton(
+                  color: Colors.white,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
