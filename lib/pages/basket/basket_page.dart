@@ -10,38 +10,31 @@ class BasketPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final basketState = ref.watch(basketProvider);
+    final basketItems = basketState.items;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Корзина', style: TextStyle(fontSize: 16)),
+        title: const Text('Корзина', style: TextStyle(fontSize: 16)),
         actions: [
           IconButton(
             onPressed: () {
               ref.read(basketProvider.notifier).clearBasket();
             },
-            icon: Icon(CupertinoIcons.delete),
+            icon: const Icon(CupertinoIcons.delete),
           ),
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Consumer(
-          builder: (context, ref, _) {
-            final basket = ref.watch(basketProvider);
-
-            if (basket.isEmpty) {
-              return Center(child: Text('Корзина пуста'));
-            }
-
-            return ListView.separated(
-              separatorBuilder: (context, index) {
-                return const Gap(10);
-              },
-              itemCount: basket.length,
-              itemBuilder: (context, index) {
-                final item = basket[index];
-                return BasketItemWidget(item: item);
-              },
-            );
+        child: basketItems.isEmpty
+            ? const Center(child: Text('Корзина пуста'))
+            : ListView.separated(
+          separatorBuilder: (context, index) => const Gap(10),
+          itemCount: basketItems.length,
+          itemBuilder: (context, index) {
+            final item = basketItems[index];
+            return BasketItemWidget(item: item);
           },
         ),
       ),

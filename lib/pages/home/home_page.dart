@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:market_place/pages/home/widgets/bottom_bar_item_widget.dart';
 
 class HomePage extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -12,13 +13,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    _selectedIndex = widget.navigationShell.currentIndex;
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant HomePage oldWidget) {
+    _selectedIndex = widget.navigationShell.currentIndex;
+    super.didUpdateWidget(oldWidget);
+  }
 
   void _onTap(int index) {
     widget.navigationShell.goBranch(index);
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override
@@ -49,46 +59,30 @@ class _HomePageState extends State<HomePage> {
           ),
           items: [
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: CustomBottomNavIcon(
+                icon: Icons.category_outlined,
+                isSelected: _selectedIndex == BottomNavigationItem.categories.index,
                 padding: const EdgeInsets.only(bottom: 6, top: 8),
-                child: Image.asset(
-                  'assets/images/category.png',
-                  width: 24,
-                  height: 24,
-                  color:
-                      _selectedIndex == BottomNavigationItem.categories.index
-                          ? Colors.black
-                          : Color(0xffC7C7C7),
-                ),
               ),
               label: 'Categories',
             ),
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: CustomBottomNavIcon(
+                icon: Icons.shopping_basket_outlined,
+                isSelected: _selectedIndex == BottomNavigationItem.basket.index,
                 padding: const EdgeInsets.only(bottom: 6, top: 8),
-                child: Icon(
-                  Icons.shopping_basket_outlined,
-                  color:
-                      _selectedIndex == BottomNavigationItem.basket.index
-                          ? Colors.black
-                          : Color(0xffC7C7C7),
-                ),
               ),
               label: 'Basket',
             ),
             BottomNavigationBarItem(
-              icon: Padding(
+              icon: CustomBottomNavIcon(
+                icon: Icons.person,
+                isSelected: _selectedIndex == BottomNavigationItem.profile.index,
                 padding: const EdgeInsets.only(bottom: 6, top: 8),
-                child: SvgPicture.asset(
-                  'assets/images/profile.svg',
-                  color:
-                      _selectedIndex == BottomNavigationItem.profile.index
-                          ? Colors.black
-                          : Color(0xffC7C7C7),
-                ),
               ),
               label: 'Profile',
             ),
+
           ],
         ),
       ),

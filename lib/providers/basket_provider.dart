@@ -3,6 +3,7 @@ import 'package:market_place/models/basket_product_model.dart';
 import 'package:market_place/models/product_model.dart';
 import 'package:market_place/db/dao/product_dao.dart';
 import 'package:market_place/providers/app_database_provider.dart';
+import 'package:market_place/providers/basket_state.dart';
 
 final productDaoProvider = Provider<ProductDao>((ref) {
   final db = ref.watch(appDatabaseProvider);
@@ -10,37 +11,38 @@ final productDaoProvider = Provider<ProductDao>((ref) {
 });
 
 final basketProvider =
-    StateNotifierProvider<BasketNotifier, List<BasketProduct>>((ref) {
-      final dao = ref.watch(productDaoProvider);
-      return BasketNotifier(dao);
-    });
+StateNotifierProvider<BasketNotifier, BasketState>((ref) {
+  final dao = ref.watch(productDaoProvider);
+  return BasketNotifier(dao);
+});
 
-class BasketNotifier extends StateNotifier<List<BasketProduct>> {
+class BasketNotifier extends StateNotifier<BasketState> {
   final ProductDao _dao;
 
-  BasketNotifier(this._dao) : super([]) {
+  BasketNotifier(this._dao) : super(BasketState.empty()) {
     _dao.watchAllProducts().listen((products) {
       _updateBasket(products);
     });
   }
 
-  void _updateBasket(List<BasketProduct> basketItem) {
-    state = basketItem;
+  void _updateBasket(List<BasketProduct> basketItems) {
+    state = BasketState.fromList(basketItems);
   }
 
-  void addToBasket(Product product) async {
+  Future<void> addToBasket(Product product) async {
     await _dao.addProduct(product);
   }
 
-  void increaseCount(Product product) async {
+  Future<void> increaseCount(Product product) async {
     await _dao.addProduct(product);
   }
 
-  void decreaseCount(String productId) async {
+  Future<void> decreaseCount(String productId) async {
     await _dao.decrementOrDeleteProduct(productId);
   }
 
-  void clearBasket() async {
+  Future<void> clearBasket() async {
     await _dao.clearAllProducts();
   }
 }
+

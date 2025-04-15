@@ -5,7 +5,6 @@ import 'package:market_place/models/product_model.dart';
 import 'package:market_place/pages/product/widgets/add_basket_button.dart';
 import 'package:market_place/pages/product/widgets/basket_counter.dart';
 import 'package:market_place/providers/basket_provider.dart';
-import 'package:collection/collection.dart';
 
 class ProductItemWidget extends ConsumerWidget {
   final Product product;
@@ -14,10 +13,8 @@ class ProductItemWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final basketItems = ref.watch(basketProvider);
-    final item = basketItems.firstWhereOrNull(
-          (item) => item.product.id == product.id,
-    );
+    final basketState = ref.watch(basketProvider);
+    final item = basketState.map[product.id];
 
     return Hero(
       tag: product.id,
@@ -88,5 +85,4 @@ class ProductItemWidget extends ConsumerWidget {
       ),
     );
   }
-
 }

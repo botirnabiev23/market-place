@@ -14,17 +14,18 @@ class ProductDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final basketItems = ref.watch(basketProvider);
+    final basketState = ref.watch(basketProvider);
+    final basketItems = basketState.items;
     final item = basketItems.firstWhere(
-      (item) => item.product.id == product.id,
+          (item) => item.product.id == product.id,
       orElse: () => BasketProduct(product: product, count: 0),
     );
 
     return Scaffold(
       appBar: AppBar(leading: BackButton()),
       body: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(color: Colors.white),
+        padding: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(color: Colors.white),
         child: Hero(
           tag: product.id,
           child: Material(
@@ -35,24 +36,24 @@ class ProductDetailPage extends ConsumerWidget {
                 children: [
                   SizedBox(
                     height: 300,
-                    child: Image(image: AssetImage(product.image)),
+                    child: Image.asset(product.image),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Text(
                     product.name,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Text(
                     '${product.price} \$',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Text(
                     product.description,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w200),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w200),
                   ),
-                  Gap(16),
+                  const Gap(16),
                   Row(
                     children: [
                       BasketCounter(product: product, count: item.count),
@@ -63,41 +64,22 @@ class ProductDetailPage extends ConsumerWidget {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              ref
-                                  .read(basketProvider.notifier)
-                                  .addToBasket(product);
+                              ref.read(basketProvider.notifier).addToBasket(product);
                               context.pop();
                             },
                             style: ButtonStyle(
                               elevation: WidgetStateProperty.all(0),
-                              foregroundColor:
-                                  WidgetStateProperty.resolveWith<Color>((
-                                    Set<WidgetState> states,
-                                  ) {
-                                    return Colors.white;
-                                  }),
-                              backgroundColor:
-                                  WidgetStateProperty.resolveWith<Color>((
-                                    Set<WidgetState> states,
-                                  ) {
-                                    return Colors.black;
-                                  }),
-                              overlayColor:
-                                  WidgetStateProperty.resolveWith<Color>((
-                                    Set<WidgetState> states,
-                                  ) {
-                                    return Colors.transparent;
-                                  }),
-                              shape: WidgetStateProperty.all<
-                                RoundedRectangleBorder
-                              >(
+                              foregroundColor: WidgetStateProperty.all(Colors.white),
+                              backgroundColor: WidgetStateProperty.all(Colors.black),
+                              overlayColor: WidgetStateProperty.all(Colors.transparent),
+                              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16),
                                 ),
                               ),
                               padding: WidgetStateProperty.all(EdgeInsets.zero),
                             ),
-                            child: Text(
+                            child: const Text(
                               'Add',
                               style: TextStyle(
                                 fontSize: 16,
